@@ -19,12 +19,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <Script
-        src="https://api.tempolabs.ai/proxy-asset?url=https://storage.googleapis.com/tempo-public-assets/error-handling.js"
-        strategy="beforeInteractive"
-      />
-      <Script id="chunk-error-handler" strategy="beforeInteractive">
-        {`
+      <head>
+        <Script
+          src="https://api.tempolabs.ai/proxy-asset?url=https://storage.googleapis.com/tempo-public-assets/error-handling.js"
+          strategy="beforeInteractive"
+        />
+        <Script id="chunk-error-handler" strategy="beforeInteractive">
+          {`
           window.addEventListener('error', function(event) {
             if (event.message && event.message.includes('ChunkLoadError')) {
               console.warn('Chunk load error detected, reloading page...');
@@ -39,7 +40,8 @@ export default function RootLayout({
             }
           });
         `}
-      </Script>
+        </Script>
+      </head>
       <body className={inter.className}>
         <ThemeProvider
           attribute="class"
